@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>text</title>
+  <style>
+    /* 구글 폰트 포함(Noto Sans Korean) */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+    /* 구글 폰트 적용(Noto Sans Korean) */
+    #content1{
+      font-family: "Noto Sans KR", sans-serif;
+    }
+    #content2{
+      font-size: 3em;  /* 16px html*/
+      /* font-size: 1rem; 24px 상위 항목의 사이ㅡㅡ*/
+      font-weight: 400;
+      font-style:italic;
+      font-variant: small-caps;
+      line-height: 2; /* 행간격 */
+      /*font: 1.5em/2 "Noto Sans KR", sans-serif; *//* 단축 속성 size와 font family는 필수로 작성해야함 */
+
+    }
+
+    #content3 {
+      text-decoration: none;
+      text-align: center; /*블록 요소만 정렬됨*/
+      text-transform: uppercase;
+      text-shadow: 5px 5px 3px brown ;
+    }
+    html{
+      font-size: 24px;
+    }
+    body{
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="content1">hello world</div>
+  <div id="content2">Hello World</div>
+  <div id="content3">hello WORLD</div>
+
+</body>
+</html>
