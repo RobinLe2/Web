@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table</title>
+  <style>
+    .members {
+      border: 1px solid black;
+      border-collapse: separate; /* 디폴트 값으로 각 영역의 테두리를 구분합니다 */
+      border-collapse: collapse; /* 각 영역의 빈 공간의 붕괴되어, 테두리가 합쳐집니다. */
+    }
+    .members td {
+      border: 1px solid silver;
+      text-align: center; /* 수평 가운데 정렬 */
+      vertical-align: middle; /* 수직 가운데 정렬 */
+    }
+    .members td:nth-child(1) { width: 200px;}
+    .members td:nth-child(2) { width: 400px;}
+    .members td:nth-child(3) { width: 600px;}
+    .members tr { height: 80px; }
+    /* 첫 tr과 마지막 tr에 silver 배경 주기 */
+    .members > thead > tr,
+    .members > tfoot > tr { 
+      background-color: silver;
+    }
+    .members > tbody > tr:hover {  /* 링크의 포인터 모양 */
+      background-color: beige;
+      cursor: pointer;
+    }
+    .members > tbody > tr:active {
+      background-color: bisque;
+    }
+  </style>
+</head>
+<body>
+  <table class="members">
+    <thead>
+      <tr>
+        <td>배송번호</td>
+        <td>사이트명</td>
+        <td>물품</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1235151</td>
+        <td><a href="https://www.coupang.com/" >쿠팡</a></td>
+        <td>충전기</td>
+      </tr>
+      <tr>
+        <td>21235151</td>
+        <td><a href="https://www.amazon.com/">아마존</a></td>
+        <td>laptop</td>
+      </tr>
+      <tr>
+        <td>31235151</td>
+        <td><a href="https://www.tmon.co.kr/">티몬</a></td>
+        <td>coffee</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">개수</td>
+        <td>3</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+</html>

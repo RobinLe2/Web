@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>float</title>
+</head>
+<body>
+  
+  <!-- 
+    float 속성 
+    1. HTML 문서 요소의 일반적인 흐름에서 띄워서(부유시켜서) 왼쪽 또는 오른쪽에 배치하는 방식.
+    2. 최초 도입 목적은 이미지와 텍스트를 자연스럽게 감싸기 위해서 도입.
+    3. 이후 레이아웃 구성에서도 많이 활용.-->
+  <style>
+    .container1 > .box1 {
+      width: 60px;
+      height: 60px;
+      border : 1px solid pink;
+      text-align: center;
+      line-height: 60px;
+      box-sizing: border-box;
+    }
+    .container1 > .box2 {
+      width: 60px;
+      height: 30px;
+      border : 1px solid pink;
+      text-align: center;
+      line-height: 60px;
+    }
+    .container1 > .box3 {
+      width: 60px;
+      height: 30px;
+      border : 1px solid pink;
+      text-align: center;
+      line-height: 60px;
+    }
+    .container1 > .box1 {
+      float : left;
+    }
+    .container1 > .box2 {
+      float :left;
+    }
+    .container1 > .box3 {
+      float :left;
+    }
+  </style>
+  <div class ="container1">
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box3">box3</div>
+    <p>Phasellus rutrum mauris eu blandit iaculis. In tempus arcu sed tellus consectetur rutrum. Sed nulla turpis, ultricies eget massa non, imperdiet commodo mi. Nunc dictum commodo purus sit amet condimentum. In volutpat est non pharetra posuere. Sed at mattis nibh, at facilisis lacus. Fusce sed auctor lectus. Cras vitae lorem lacinia, aliquet tortor at, dignissim leo. Etiam efficitur lobortis arcu. Quisque malesuada facilisis lorem, eu aliquam nunc semper nec. Nam mollis diam massa, eu iaculis ligula tempus sed. Pellentesque consectetur ante eros, non scelerisque felis sodales at. Cras ornare sagittis elit, id scelerisque nibh egestas at. Integer volutpat nec augue vitae viverra. Ut et tincidunt augue, eget rhoncus risus. Curabitur in bibendum nisl, in tincidunt quam.</p>
+  </div>
+
+  <hr>
+  <style>
+    .container2 > div {
+      width : 100px;
+      height: 100px;
+      border : 1px solid black;
+      text-align: center;
+      line-height: 100px;
+      box-sizing: border-box;
+    }
+    .container2 > .box1 , 
+    .container2>.box2 {
+      float : left;
+    }
+    .container2 > .box3 {
+      clear : left; /* float : left; 영역을 벗어납니다. (left, right, both) */
+      width : 200px
+    }
+  </style>
+
+  <div class="container2">
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box3">box3</div>
+  </div>
+  
+  <!-- 연습) GNB (Global Navigation Bar)-->
+  
+  <style>
+    .GNB {
+      list-style : none;
+      padding: 0; /* 앞에 떠있는것을 없앰 */
+    }
+    .GNB > li {
+      float : left;
+      box-sizing: content-box ;
+      padding : 10px 5px;
+      
+    }
+    .content {
+      clear : left;
+    }
+    .GNB a { 
+      box-sizing: content-box;
+      padding : 10px 5px;
+      border-bottom: 1px solid black;
+    }
+    .GNB a:hover {
+      border-bottom : 3px solid black; 
+    }
+  </style>
+  <ul class="GNB">
+
+    <li><a href="https://m.sports.naver.com/index">홈</a></li>
+    <li><a href="https://m.sports.naver.com/kbaseball/index">야구</a></li>
+    <li><a href="https://m.sports.naver.com/wbaseball/index">해외야구</a></li>
+    <li><a href="https://m.sports.naver.com/kfootball/index">축구</a></li>
+    <li><a href="https://m.sports.naver.com/wfootball/index">해외축구</a></li>
+    <li><a href="https://m.sports.naver.com/basketball/index">농구</a></li>
+    <li><a href="https://m.sports.naver.com/basketball/index">배구</a></li>
+  </ul>
+  <div class="content">내용이 나오는 곳</div>
+
+</body>
+</html>
