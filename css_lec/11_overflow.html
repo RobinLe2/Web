@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    wrap1 > div {
+      width : 200px;
+      height: 200px;
+      border : 1px solid black;
+       }
+    .box1 {
+      overflow: hidden; /* 영역을 벗어난 컨텐츠 숨김 */
+    }
+    .box2 {
+      overflow: scroll; /* 스크롤 바 표시*/
+    }
+    .box3 { 
+      overflow: visible; /* 영역을 벗어난 컨텐츠도 보여줌 */
+      margin-bottom: 250px;
+    }
+  </style>
+  <div class="wrap1">
+  <div class="box1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi posuere lobortis orci eget aliquam. Vestibulum fermentum fermentum est ac porta. Quisque feugiat hendrerit mauris, eget rutrum lectus mattis et. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur feugiat efficitur nulla in dictum. Integer sed diam consequat, mattis nisi ut, maximus ante. Vestibulum rutrum odio leo, eget maximus sapien luctus vitae. </div>
+  <div class="box2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi posuere lobortis orci eget aliquam. Vestibulum fermentum fermentum est ac porta. Quisque feugiat hendrerit mauris, eget rutrum lectus mattis et. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur feugiat efficitur nulla in dictum. Integer sed diam consequat, mattis nisi ut, maximus ante. Vestibulum rutrum odio leo, eget maximus sapien luctus vitae.</div>
+  <div class="box3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi posuere lobortis orci eget aliquam. Vestibulum fermentum fermentum est ac porta. Quisque feugiat hendrerit mauris, eget rutrum lectus mattis et. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur feugiat efficitur nulla in dictum. Integer sed diam consequat, mattis nisi ut, maximus ante. Vestibulum rutrum odio leo, eget maximus sapien luctus vitae.</div>
+  
+  </div>
+
+<hr>
+
+  <style>
+    /* 자식 요소에 float : left를 적용하면 부모 요소는 float된 자식 요소의 높이를 인식하지 못한다.(높이가 0이 되거나, 부모의 테두리 등이 안보이는 상황이 발생)
+    부모 요소에 overflow : hidden을 적용하면 새로운 Block Formatting Content(BFC)가 생성되면서, float된 자식 요소의 높이도 부모의 레이아웃계산에 포함됩니다.*/
+
+
+    .wrap2 {
+      border : 1px solid red;
+      overflow: hidden; 
+      }
+    .wrap2 > div {
+      width: 200px;
+      height: 200px;
+      border : 1px solid black;
+    }
+    .wrap2 > .box4 {
+      float : left;
+    }
+     .wrap2 > .box5 { 
+      float : left;
+    } 
+    .wrap2 > .box6 {
+      float : left;
+    }
+  </style>
+  <div class="wrap2">
+    <div class="box4">box4</div>
+    <div class="box5">box5</div>
+    <div class="box6">box6</div>
+  </div>
+
+
+
+  <!-- 연습) GNB (Global Navigation Bar)-->
+  
+  <style>
+    .GNB {
+      list-style : none;
+      padding: 0; /* 앞에 떠있는것을 없앰 */
+      overflow: hidden;
+    }
+    .GNB > li {
+      float : left;
+      box-sizing: content-box ;
+      padding : 10px 5px;
+      
+    }
+    .content {
+      clear : left;
+    }
+    .GNB a { 
+      box-sizing: content-box;
+      padding : 10px 5px;
+      border-bottom: 1px solid black;
+    }
+    .GNB a:hover {
+      border-bottom : 3px solid black; 
+    }
+    
+  </style>
+  <ul class="GNB">
+
+    <li><a href="https://m.sports.naver.com/index">홈</a></li>
+    <li><a href="https://m.sports.naver.com/kbaseball/index">야구</a></li>
+    <li><a href="https://m.sports.naver.com/wbaseball/index">해외야구</a></li>
+    <li><a href="https://m.sports.naver.com/kfootball/index">축구</a></li>
+    <li><a href="https://m.sports.naver.com/wfootball/index">해외축구</a></li>
+    <li><a href="https://m.sports.naver.com/basketball/index">농구</a></li>
+    <li><a href="https://m.sports.naver.com/basketball/index">배구</a></li>
+  </ul>
+  <div class="content">내용이 나오는 곳</div>
+</body>
+</html>
