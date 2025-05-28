@@ -64,5 +64,101 @@
     // a = 1, rest = [2, 3]
 -->
 
+
+<script>
+  {
+    // 빈 배열
+    let arr =[];
+    
+    // 배열 요소 다루기
+    arr[0] = 10;
+    arr[1] = true;
+    arr[2] = "naunauunau"
+
+    // 배열 확인하기
+    console.log(arr);
+
+    // 배열 길이 확인하기
+    console.log(arr.length);
+
+    // 배려의 요소 순회(순서대로 접근)하기 : 인덱스를 0부터 length - 1까지 증가시키며 접근합니다.
+    for (let i = 0; i < arr.length ; i++){
+      console.log(`인덱스 ${i}에 저장된 요소: ${arr[i]}`);
+    }
+  }
+
+  {
+    const seasons = ["", "겨울", "겨울","봄","봄","봄","여름","여름","여름","가을","가을","가을","겨울"];
+    console.log(seasons[prompt("월을 입력하세요(1~12).")]);
+  }
+
+  {
+    const seasons = ["겨울","봄","여름","가을"];
+    console.log(seasons[prompt("월을 입력하세요(1~12)" % 12 / 3)]) ;
+
+  }
+</script>
+
+<script>
+{
+  const cities = ["seoul", "tokyo", "sydney", "newyork", "toronto"];
+
+  //인덱스만 순회
+  for (const i in cities){
+    console.log(i, cities[i]);
+  }
+
+  //요소만 순회
+
+  for (const city of cities){
+    console.log(city);
+  }
+
+  // 인덱스와 요소 모두 순회
+  for (const [i, city] of cities.entries()){
+    console.log(i,city);
+  }
+}
+
+</script>
+<script>
+  {
+    const hobbies = ["golf", "sns", " travel","game","swimming"];
+    const [h1,h2,h3,h4,h5] = hobbies; //순서대로 분해됩니다.
+    console.log(h1,h2,h3,h4,h5);
+    const [first,second, ...rest] = hobbies //2개 요소를 제외한 나머지 요소들은 rest 배열이 됩니다.
+    console.log(first,second,rest);
+      }
+</script>
+
+<script>
+  {
+    // 연습) 이미지 5개를 화면에 출력하기 (attatch. png, avatar.png, logo_naver.png, r1.gif)
+    const images = ["attach.png", "avatar.png", "lightOn.png", "logo_naver.png", "r1.gif"];
+    for (const i in images){
+      document.write (` <img src ="../assets/images/${images[i]}" width = 100px>`);
+    }
+  }   //내꺼
+</script>
+<script>
+  {
+    // 연습) 이미지 5개를 화면에 출력하기 (attatch. png, avatar.png, logo_naver.png, r1.gif)
+     const images = ["attach.png", "avatar.png", "lightOn.png", "logo_naver.png", "r1.gif"];
+    let str = "";
+    for (const image of images){
+      str += '<img src ="../assets/images/' + image + '"width="100px">';
+       
+    }
+    document.write(str);
+  }
+
+  {
+    // 연습) 배열에 저장된 현재 좌표를 변수에 저장하기
+    const coords = [25, 120]; // 위도, 경도 순
+    const [latitude, longitude] = coords;
+    console.log('위도',latitude)
+    console.log('경도',longitude)
+  }
+</script>
 </body>
 </html>
