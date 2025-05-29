@@ -232,7 +232,7 @@
 
   </script>
 
-  <script>
+  <script>  
    // ------ qksghks
   function one() { 
     return 1; //   ------①   one 함수 호출 한 곳으로 1을 반환합니다. 
@@ -305,9 +305,45 @@
       4. 함수는 호출된 이후 반환값(return value)으로 바뀝니다. (반환값이 없으면 undefined)  각 과목별 용어 정리 
    */ 
 
+    // 연습) 어떤 놀이기구는 몸무게가 90 이상인 경우 이용이 불가능합니다.
+    //       몸무게가 40미만인 경우 부모의 동의가 있으면 이용이 가능합니다. (confirm 함수를 찾아보세요.)
+    //       나머지 경우에는 부모의 동의가 없어도 이용이이 가능합니다.
+    //       prompt를 이용해서 몸무게를 입력받아 isPossible 함수에 전달합니다.
+    //       isPossible 함수는 놀이기구의 이용이 가능하면 true 아니면 false를 반환합니다.
+    //       최종 실행 시 "놀이기구 탑승이 가능합니다." , "놀이기구 탑승이 거절되었습니다." 중 하나의 메세지를 출력합니다.
 
+       /* 프롬프트 몸무게 입력 -> 조건 충족  탑승 가능 , 미충족 탑승 거절  
+        조건 1 .몸무게 90 이상 이용 불가
+             2. 몸무게 40미만 이용 불가 예외) 부모의 동의 (confirm 함수)
 
+        )
+
+        prompt 값 -> isPossible로 반환 후 출력  */
+      {
+        
+        function isPossible(weight){
+            if (weight >= 90 ) {
+              return false;
+            } else if (weight < 40 ){
+              return false;
+            } else {
+              return true;
+            }
+          }
+        
+        let weight = prompt('몸무게를 입력하세요');
+         console.log(weight);
+        const result = isPossible(Number(weight));
+        const finalResult = if (isPossible == trur) {
+          retrun 놀이기구 탑승이 가능합니다.
+        }else {
+          return 놀이기구 탑승이 거절되었습니다.
+        }
+         console.log(result);
+      }
+      
+        
 </script>
-
+  
 </body>
 </html>
