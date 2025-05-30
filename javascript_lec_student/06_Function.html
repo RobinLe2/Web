@@ -101,14 +101,14 @@
 -->
   <script>  
     
-    // ----- 1. 함수 선언식   // fn + 함수명 으로 만들기기
+    // ----- 1. 함수 선언식   // fn + 함수명 으로 만들기
     function fndeclaration() {
       console.log('declaration 함수가 호출되었습니다.');
     }
 
     //----- 2.함수 표현식
     const expr = function(){
-      console.log('expr 함수가 호출되었습니다.');
+      console.log('expr 함수가 호출되었습니다.');         // 선언된 함수를 표현식에 저장하는 법 -> const expr = declaration;   함수의 이름만 저장하기 ()
     }
     
     //----- 3.화살표 함수
@@ -192,6 +192,8 @@
   </script>
 
   <script>
+    //---------------- 콜백 함수
+
     function handle (callback) { // ② 전달된 익명 함수를 callback 매개변수에 저장합니다. (함수 표현식)
       callback(); // ③ callback 함수를 호출한다. 전달된 익명함수가 실행된다.
     }
@@ -233,7 +235,7 @@
   </script>
 
   <script>  
-   // ------ qksghks
+   // ------ 반환
   function one() { 
     return 1; //   ------①   one 함수 호출 한 곳으로 1을 반환합니다. 
   }
@@ -242,6 +244,7 @@
   console.log(oneResult);
 
 
+  // 2) 전달된 값보다 1 큰 수 반환;
   function plusOne(arg){
     return arg += 1;
   }
@@ -275,10 +278,13 @@
     // 5) 객체를 반환하는 함수
       function retObject (nickname, age) {
         return {
-          nickname: nickname,   // nickname : "홍길동"
+          nickname: nickname,   // nickname : "홍길동"     
           age : age,    // age : 30
         }
       }
+
+     // 객체 프로퍼티 단축 표기법에 의해 아래와 같은 코드도 가능합니다
+     // return {nickname,age} -> 프로퍼티 단축 표기법
 
       const user = retObject("홍길동", 30)
       console.log(user.nickname, user.age);
@@ -286,7 +292,8 @@
       // 이름만 받고 싶을때
       const {nickname} = retObject("김영희", 20);
      console.log(nickname);
-    
+     
+
   // 6) 함수를 반환하는 함수
       function retFunction() {
         return function () {
@@ -320,12 +327,12 @@
 
         prompt 값 -> isPossible로 반환 후 출력  */
       {
-        
         function isPossible(weight){
             if (weight >= 90 ) {
               return false;
             } else if (weight < 40 ){
-              return false;
+              
+            return false;
             } else {
               return true;
             }
@@ -334,15 +341,50 @@
         let weight = prompt('몸무게를 입력하세요');
          console.log(weight);
         const result = isPossible(Number(weight));
-        const finalResult = if (isPossible == trur) {
-          retrun 놀이기구 탑승이 가능합니다.
-        }else {
-          return 놀이기구 탑승이 거절되었습니다.
+
+        let finalResult;
+        if (result == true) {
+        finalResult = '놀이기구 탑승이 가능합니다.';
+        } else {
+        finalResult = '놀이기구 탑승이 거절되었습니다.';
+
         }
-         console.log(result);
+      console.log(finalResult);
       }
       
-        
+      // 연습) 함수와 값을 전달하면 전달한 함수에 값을 연산한 결과를 반환하는 함수를 구성합니다.
+      function add(a, b) {return a + b; }
+      function sub(a, b) {return a - b; }
+      function mul(a, b) {return a * b; }
+      function div(a, b) {return a / b; }
+      function mod(a, b) {return a % b; }
+
+      // calculate 함수 만들기
+
+      function calculate (callback, a, b){
+        return callback(a, b);
+      }
+
+      // calculate 함수 호출하기
+      const value1 = 5;
+      const value2 = 3;
+      const addResult = calculate(add, value1, value2);
+      console.log(addResult);
+      
+      
+     // 연습) 배열과 함수를 전달하면 배열의 모든 요소를 전달한 함수 처리하여 반환합니다.  map으로 바꿔보기기
+     
+     function handleArray(arr,callback) {
+      const result = [];
+      for (const element of arr) {
+        result.push(callback(element));
+      }
+      return result;
+     }
+
+     const arrResult = handleArray([1,2,3], function(number){
+       return number * 2;})
+     console.log(arrResult);        // arrResult = [2,4,6]
 </script>
   
 </body>
