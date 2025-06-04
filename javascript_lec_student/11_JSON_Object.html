@@ -67,5 +67,26 @@
     (2) 서버로부터 받은 JSON 문자열 데이터를 JavaScript 데이터로 바꿀 때 주로 활용합니다.
 -->
 
+<script>
+
+  // JavaScript 데이터
+  const data = {
+    name: "홍길동",
+    age: 30,
+    hobbies: [
+      "게임",
+      "여행",
+    ],
+  }
+
+  // JavaScript 데이터 -> JSON 문자열로 변환하기 (서버로 데이터를 보낼 때 사용: 요청)
+  const strJson = JSON.stringify(data);
+  console.log(strJson, typeof strJson);
+
+  // JSON 문자열 -> JavaScript 데이터로 변환하기 (서버에서 데이터를 받을 때 사용: 응답)
+  const jsonData = JSON.parse(strJson);
+  console.log(jsonData, typeof jsonData);
+  </script>
+
 </body>
 </html>
