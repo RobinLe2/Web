@@ -12,7 +12,7 @@
     영화코드, 썸네일, 영화제목, 영화감독 순으로 테이블에 데이터를 표시하세요.
     썸네일을 클릭하면 포스터 이미지가 나타나도록 처리하세요.
   -->
-  <table border="1" color = yellow;>
+  <table border="1">
     <thead>
       <tr>
         <td>영화코드</td>
@@ -54,7 +54,7 @@
     `<tr>
       <td>${movie.code}</td>
       <td>
-        <a href="${movie.poster}">
+        <a href="${movie.poster}" target="blank">
         <img src ="${movie.thumbnail}" 
              alt="썸네일" 
              style="width:60px; cursor:pointer;">
@@ -113,8 +113,20 @@
     <button id="switch" type="button" style="width: 60px; text-align: center;">ON</button>
     <img id="light" src="../assets/images/lightOff.png" width="50px">
   </div>
-  <script>
-
+   <script>
+    function switchLight() {
+      document.getElementById('switch').onclick = function(e) {
+        const img = document.getElementById('light');
+        if(e.target.textContent === 'ON') {
+          img.src = '../assets/images/lightOn.png';
+          e.target.textContent = 'OFF';
+        } else {
+          img.src = '../assets/images/lightOff.png';
+          e.target.textContent = 'ON';
+        }
+      }
+    }
+    switchLight();
   </script>
 
   <hr>
