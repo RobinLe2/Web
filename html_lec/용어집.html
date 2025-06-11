@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML/CSS/JavaScript 용어집 및 예시</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    .tabs { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    .tab { padding: 0.5rem 1rem; cursor: pointer; background: #eee; border-radius: 4px; }
+    .tab.active { background: #ccc; }
+    .content { display: none; }
+    .content.active { display: block; }
+    dl { margin-bottom: 2rem; }
+    dt { font-weight: bold; margin-top: 1rem; display: flex; align-items: center; cursor: pointer; }
+    .arrow { margin-right: 0.5rem; font-size: 1rem; }
+    dd { margin-left: 1.5rem; margin-bottom: .5rem; display: none; }
+    .example { display: none; margin-left: 1.5rem; margin-bottom: 1rem; }
+    .render { border: 1px solid #ddd; padding: 0.5rem; background: #fafafa; margin-top: 0.5rem; }
+    pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>용어집 및 코드 예시</h1>
+  <div class="tabs">
+    <div class="tab active" data-target="html">HTML</div>
+    <div class="tab" data-target="css">CSS</div>
+    <div class="tab" data-target="js">JavaScript</div>
+  </div>
+
+  <!-- HTML 섹션 -->
+  <section id="html" class="content active">
+    <h2>HTML 용어집</h2>
+    <dl>
+      <!-- 기본 구조 -->
+      <dt><span class="arrow">▶</span>Doctype</dt>
+      <dd>문서가 HTML5임을 선언 (<code>&lt;!DOCTYPE html&gt;</code>).</dd>
+      <dd class="example">
+        <pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+        <div class="render">문서 최상단 선언</div>
+      </dd>
+      <dt><span class="arrow">▶</span>html, head, body</dt>
+      <dd>루트 요소(<code>&lt;html&gt;</code>), 메타데이터(<code>&lt;head&gt;</code>), 콘텐츠(<code>&lt;body&gt;</code>).</dd>
+      <dd class="example">
+        <pre><code>&lt;html lang="ko"&gt;
+  &lt;head&gt;…&lt;/head&gt;
+  &lt;body&gt;…&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <div class="render"><p>루트, 메타, 콘텐츠 구조</p></div>
+      </dd>
+      <!-- 콘텐츠 태그 -->
+      <dt><span class="arrow">▶</span>Heading</dt>
+      <dd><code>&lt;h1&gt;~&lt;h6&gt;</code> 문서 제목.</dd>
+      <dd class="example">
+        <pre><code>&lt;h1&gt;제목&lt;/h1&gt;</code></pre>
+        <div class="render"><h1>제목</h1></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Paragraph</dt>
+      <dd><code>&lt;p&gt;</code> 문단.</dd>
+      <dd class="example">
+        <pre><code>&lt;p&gt;문단&lt;/p&gt;</code></pre>
+        <div class="render"><p>문단</p></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Division (div)<dt>
+      <dd>블록 컨테이너 (<code>&lt;div&gt;</code>).</dd>
+      <dd class="example">
+        <pre><code>&lt;div&gt;내용&lt;/div&gt;</code></pre>
+        <div class="render"><div style="border:1px solid #000;padding:4px;">내용</div></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Span</dt>
+      <dd>인라인 컨테이너 (<code>&lt;span&gt;</code>).</dd>
+      <dd class="example">
+        <pre><code>&lt;span style="color:red;"&gt;텍스트&lt;/span&gt;</code></pre>
+        <div class="render"><span style="color:red;">텍스트</span></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Link</dt>
+      <dd><code>&lt;a href="url"&gt;</code> 하이퍼링크.</dd>
+      <dd class="example">
+        <pre><code>&lt;a href="https://example.com"&gt;클릭&lt;/a&gt;</code></pre>
+        <div class="render"><a href="https://example.com" target="_blank">클릭</a></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Image</dt>
+      <dd><code>&lt;img src="..." alt="..."&gt;</code> 이미지 삽입.</dd>
+      <dd class="example">
+        <pre><code>&lt;img src="https://via.placeholder.com/60" alt="예시"&gt;</code></pre>
+        <div class="render"><img src="https://via.placeholder.com/60" alt="예시"></div>
+      </dd>
+      <dt><span class="arrow">▶</span>List</dt>
+      <dd><code>&lt;ul&gt;/&lt;ol&gt;</code> + <code>&lt;li&gt;</code> 목록.</dd>
+      <dd class="example">
+        <pre><code>&lt;ul&gt;&lt;li&gt;A&lt;/li&gt;&lt;/ul&gt;</code></pre>
+        <div class="render"><ul><li>A</li></ul></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Table</dt>
+      <dd><code>&lt;table&gt;,&lt;tr&gt;,&lt;th&gt;,&lt;td&gt;</code> 표.</dd>
+      <dd class="example">
+        <pre><code>&lt;table border="1"&gt;&lt;tr&gt;&lt;td&gt;X&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code></pre>
+        <div class="render"><table border="1"><tr><td>X</td></tr></table></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Form</dt>
+      <dd><code>&lt;form&gt;</code> 입력 그룹.</dd>
+      <dd class="example">
+        <pre><code>&lt;form&gt;&lt;input&gt;&lt;/form&gt;</code></pre>
+        <div class="render"><form><input placeholder="입력"></form></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Input</dt>
+      <dd>다양한 타입 (<code>text, number, file</code> 등).</dd>
+      <dd class="example">
+        <pre><code>&lt;input type="text" placeholder="이름"&gt;</code></pre>
+        <div class="render"><input type="text" placeholder="이름"></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Select & Option</dt>
+      <dd><code>&lt;select&gt;</code> + <code>&lt;option&gt;</code> 드롭다운.</dd>
+      <dd class="example">
+        <pre><code>&lt;select&gt;&lt;option&gt;A&lt;/option&gt;&lt;/select&gt;</code></pre>
+        <div class="render"><select><option>A</option></select></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Textarea</dt>
+      <dd>여러 줄 입력 (<code>&lt;textarea&gt;</code>).</dd>
+      <dd class="example">
+        <pre><code>&lt;textarea rows="2" cols="20"&gt;&lt;/textarea&gt;</code></pre>
+        <div class="render"><textarea rows="2" cols="20"></textarea></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Checkbox</dt>
+      <dd><code>&lt;input type="checkbox"&gt;</code> 체크박스.</dd>
+      <dd class="example">
+        <pre><code>&lt;input type="checkbox"&gt;</code></pre>
+        <div class="render"><input type="checkbox"></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Radio</dt>
+      <dd><code>&lt;input type="radio"&gt;</code> 라디오 버튼.</dd>
+      <dd class="example">
+        <pre><code>&lt;input type="radio" name="r"&gt;</code></pre>
+        <div class="render"><input type="radio" name="r"></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Datalist</dt>
+      <dd><code>&lt;datalist&gt;</code> 자동완성 목록.</dd>
+      <dd class="example">
+        <pre><code>&lt;input list="list"&gt;&lt;datalist id="list"&gt;&lt;option&gt;A&lt;/option&gt;&lt;/datalist&gt;</code></pre>
+        <div class="render"><input list="list"><datalist id="list"><option>A</option></datalist></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Label</dt>
+      <dd><code>&lt;label&gt;</code> 폼 요소에 설명(레이블) 제공.</dd>
+      <dd class="example">
+        <pre><code>&lt;label for="username"&gt;아이디&lt;/label&gt;
+&lt;input type="text" id="username"&gt;</code></pre>
+        <div class="render"><label for="username">아이디</label> <input type="text" id="username"></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Button</dt>
+      <dd><code>&lt;button&gt;</code> 클릭 가능한 버튼.</dd>
+      <dd class="example">
+        <pre><code>&lt;button type="button" onclick="alert('Hello')"&gt;클릭&lt;/button&gt;</code></pre>
+        <div class="render"><button type="button" onclick="alert('Hello')">클릭</button></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Textarea</dt>
+      <dd><code>&lt;textarea&gt;</code> 여러 줄 텍스트 입력.</dd>
+      <dd class="example">
+        <pre><code>&lt;textarea rows="3" cols="30" placeholder="댓글 입력"&gt;&lt;/textarea&gt;</code></pre>
+        <div class="render"><textarea rows="3" cols="30" placeholder="댓글 입력"></textarea></div>
+      </dd>
+      <dd class="example">
+        <pre><code>&lt;input list="list"&gt;&lt;datalist id="list"&gt;&lt;option&gt;A&lt;/option&gt;&lt;/datalist&gt;</code></pre>
+        <div class="render"><input list="list"><datalist id="list"><option>A</option></datalist></div>
+      </dd>
+    </dl>
+  </section>
+  <!-- CSS 및 JS 섹션 생략 -->
+  <section id="css" class="content">
+    <h2>CSS 용어집</h2>
+    <dl>
+      <!-- CSS 개요 등 기존 내용 유지 -->
+      <dt><span class="arrow">▶</span>Position</dt>
+      <dd>요소의 배치 방식(static, relative, absolute, fixed).</dd>
+      <dd class="example">
+        <pre><code>.box { position: absolute; top: 10px; left: 10px; }</code></pre>
+        <div class="render"><div style="position:absolute;top:10px;left:10px;border:1px solid #000;padding:4px;">box</div></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Flexbox</dt>
+      <dd>1차원 레이아웃 모델. 컨테이너와 아이템 정렬·배치.</dd>
+      <dd class="example">
+        <pre><code>.container { display: flex; justify-content: space-between; }</code></pre>
+        <div class="render"><div style="display:flex;justify-content:space-between;border:1px solid #000;padding:4px;"><div>1</div><div>2</div><div iv></div></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Display</dt>
+      <dd>요소의 기본 표시 방식(block, inline, inline-block).</dd>
+      <dd class="example">
+        <pre><code>span { display: block; }</code></pre>
+        <div class="render"><span style="display:block;width:100px;border:1px solid #000;">block span</span></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Float</dt>
+      <dd>텍스트나 다른 요소가 주변을 감싸도록 좌우로 띄움.</dd>
+      <dd class="example">
+        <pre><code>.box { float: left; width:60px; }</code></pre>
+        <div class="render"><div style="float:left;width:60px;height:30px;border:1px solid #000;text-align:center;line-height:30px;">box</div><p>텍스트가 감싸입니다.</p><div style="clear:left"></div></div>
+      </dd>
+      <dt><span class="arrow">▶</span>Overflow</dt>
+      <dd>컨텐츠가 영역을 벗어날 때 처리(hidden, scroll, visible).</dd>
+      <dd class="example">
+        <pre><code>.box { width:100px; height:50px; overflow: hidden; }</code></pre>
+        <div class="render"><div style="width:100px;height:50px;overflow:hidden;border:1px solid #000;">Overflow 처리 예시 - 긴 텍스트가 잘립니다.</div></div>
+      </dd>
+    </dl>
+  </section>
+  <section id="js" class="content">
+    <!-- ... -->
+  </section>
+
+  <script>
+    // 탭 전환
+    document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.target).classList.add('active');
+    }));
+    // 설명 토글
+    document.querySelectorAll('dt').forEach(dt => dt.addEventListener('click', () => {
+      const arrow = dt.querySelector('.arrow');
+      const ddDesc = dt.nextElementSibling;
+      const ddExample = ddDesc.nextElementSibling;
+      const isVisible = ddDesc.style.display === 'block';
+      arrow.textContent = isVisible ? '▶' : '▼';
+      ddDesc.style.display = isVisible ? 'none' : 'block';
+      ddExample.style.display = isVisible ? 'none' : 'block';
+    }));
+  </script>
+</body>
+</html>

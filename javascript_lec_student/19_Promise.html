@@ -269,7 +269,7 @@
     })
     .then(user => user.address)                         //-- then() 메소드의 콜백 함수가 반환한 값은 프로미스입니다.(user.address가 저장된 프로미스 )
     .then(address => address.geo)                       //-- then() 메소드의 콜백 함수가 반환한 값은 프로미스입니다.(user.geo가 저장된 프로미스 )
-    .then( geo => console.log('geo:', geo));            //-- then() 메소드의 콜백 함수가 반환한 값은 프로미스입니다.(user.geo가 저장된 프로미스 )
+    .then( geo => console.log('geo:', geo));            
     
     })
 
