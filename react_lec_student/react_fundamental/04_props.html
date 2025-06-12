@@ -83,5 +83,254 @@
   2) 별도 CDN 추가가 필요합니다. (참고 : https://github.com/facebook/prop-types)
 -->
 
+<div id="root1"></div>
+<script type = "text/babel">
+
+  const NameCard1 = (props) => {
+    return (
+      <h1>
+        <div>이름 {props.name}</div>
+        <div>연락처 {props.phone}</div>
+      </h1>
+    )
+  }
+
+  const NameCard2 = (props) => {
+    const {name, phone} = props; // 객체 구조 분해 할당
+    return (
+      <h1>
+        <div>이름 {name}</div>
+        <div>연락처 {phone}</div>
+      </h1>
+    )
+  }
+
+ const NameCard3 = ({name, phone}) => {  // props 자리에 구조 분해 할당 
+    return (
+      <h1>
+        <div>이름 {name}</div>
+        <div>연락처 {phone}</div>
+      </h1>
+    )
+  }
+
+  const NameCard4 = (props) => {
+    return (
+      <h1>
+        <div>이름 {props.name}</div>
+        <div>연락처 {props.phone}</div>
+      </h1>
+    )
+  }
+
+
+  
+  NameCard4.defaultProps = {
+    name: "Jessica",
+    phone: "010-4444-4444"
+  }
+
+    const NameCard5 = ({name = "Jackson" , phone = "010-5555-5555"}) => { // 디폴트 매개변수 사용하기기
+    return (
+      <h1>
+        <div>이름{name}</div>
+        <div>연락처{phone}</div>
+      </h1>
+    )
+  }
+
+  const name = "James", phone = "010-1111-1111";
+  // props 객체의 디폴트 값 설정하기 (전달되지 않으면 사용할 값)
+  ReactDOM.createRoot(document.getElementById('root1')).render([
+    <NameCard1 name= {name} phone = {phone}/>,
+    <NameCard2 name="Alice" phone="010-2222-2222"/>,
+    <NameCard3 name={"Tom"} phone="010-3333-3333"/>,
+    <NameCard4 />,
+    <NameCard5 />,
+    ])
+
+</script>
+
+<div id="root2"></div>
+<script type="text/babel">
+  const AddressCard = (props) => {
+    return (
+      <>
+      <h1>street{props.street}</h1>,
+      <h1>city{props.city}</h1>,
+      <h1>zip{props.zip}</h1>,
+      </>
+    )
+  }
+    const street = "kingsroad", city = "seoul", zip = 14349
+   ReactDOM.createRoot(document.getElementById('root2')).render(
+    <AddressCard street = {street} city = {city} zip = {zip} />
+  )
+  </script>
+
+<div id="root3"></div>
+<script type ="text/babel">
+
+//--- props drilling : 하위 컴포넌트에 값을 연속해서 전달하는 방식입니다. 좋은 방식이 아니므로 향후 다른 방식으로 대체하기를 권장합니다.
+  
+
+   const FinalComp = ({data}) => {
+    return (
+          <>
+          <h1>I'm FinalComp</h1>
+          <h1>{data}</h1>
+          </>
+       )
+    } 
+
+      const ThirdComp = ({data}) => {
+     return (
+         <>
+          <h1>I'm ThirdComp</h1>
+           <FinalComp data={data}/>
+         </>
+      )
+     } 
+
+
+    const SecondComp = ({data}) => {
+    return (
+      <>
+          <h1>I'm SecondComp</h1>
+           <ThirdComp data={data}/>
+         </>
+      )
+    }   
+        
+  const FirstComp = ({data}) => {
+    return (
+        <>
+          <h1>I'm FirstComp</h1>
+           <SecondComp data={data}/>
+         </>
+            
+          )
+        } 
+  const App = () => {
+    const data = "Who needs me?"
+    return (
+      <>
+        <FirstComp data = {data}/>
+      </>
+
+    )
+  }
+
+  ReactDOM.createRoot(document.getElementById('root3')).render(<App/>)
+</script>
+
+<hr>
+
+
+<div id="root4"></div>
+<script type="text/babel">
+
+  //--- props.childern : 컴포넌트를 호출할 때 전달한 내부 요소를 의미합니다. 
+
+  const GiftCard1 = (props) => {
+    return (
+      <h1>{props.children}</h1>
+    )
+  }
+  const GiftCard2 = (props) => {
+    const {children} = props;
+    return (
+      <h1>{children}</h1>
+    )
+  }
+  const GiftCard3 = ({children} ) => {
+    return (
+      <h1>{children}</h1>
+    )
+  }
+
+  ReactDOM.createRoot(document.getElementById('root4')).render([
+    <GiftCard1>3만원</GiftCard1>,
+    <GiftCard2>5만원</GiftCard2>,
+    <GiftCard3><em>10만원</em></GiftCard3>,
+  ])
+</script>
+
+
+<div id="root5"></div>
+<script type="text/babel">
+
+  // 연습) 아래와 같이 컴포넌트를 호출할 때 전달한 color를 배경색으로 가지도록 컴포넌트를 구현하세요.
+  //      <ColorBox color={"red"} />
+
+  const ColorBox = (props) => {
+    const style = {
+      width: '100px',
+      height: '100px',
+      backgroundColor: props.color
+   };
+   return <div style={style}></div>
+
+  }
+
+  ReactDOM.createRoot(document.getElementById('root5')).render(
+    <>
+    <ColorBox color = {"red"} />
+    <ColorBox color = {"blue"} />
+    <ColorBox color = {"green"} />
+    </>
+   )
+  </script>
+  <div id="root6"></div>
+  <script type="text/babel">
+  // 연습) 아래와 같이 컴포넌트를 호출할 때 전달한 배열의 요소를 모두 출력하도록 컴포넌트를 구현하세요.
+  //      <Items data={["봄", "여름", "가을", "겨울"]} />
+  const seasons = ["봄", "여름", "가을", "겨울"];
+    const Items = ({data}) => {
+    return (
+      <>
+        { data.map(elem => <h1>{elem}</h1>) }
+      </>
+    )
+  }
+
+    ReactDOM.createRoot(document.getElementById('root6')).render(<Items data = {seasons} />)
+   </script>
+   
+   <div id="root7"></div>
+   <script type="text/babel">
+  // 연습) 아래와 같이 컴포넌트를 호출할 때 전달한 객체의 속성값을 모두 출력하도록 컴포넌트를 구현하세요.
+  //      <Person friend={{name: "jack", age: 20}} />
+    const PersonFriend= {name : "jack" , age : 20};
+    const Person = ({friend}) => {
+      const { name , age} = friend;
+      return(
+        <>
+        <h1>이름 {name}</h1>
+        <h1>나이 {age}</h1>
+        </>
+      )
+    }
+
+    ReactDOM.createRoot(document.getElementById('root7')).render(<Person friend ={PersonFriend} />);
+
+  </script>
+
+
+   <div id="root8"></div>
+   <script type="text/babel">
+  // 연습) 아래와 같이 컴포넌트를 호출할 때 내부 요소로 전달한 값을 정사각형의 너비로 계산하여 정사각형의 넓이를 출력하는 컴포넌트를 구현하세요.
+  //      <Square>5</Square>
+
+    const Square = ({children}) => {
+      return (
+        <h1>정사각형의 넓이 { Math.pow(children,2)}</h1>
+      )
+    }
+     ReactDOM.createRoot(document.getElementById('root8')).render(
+      <Square>5</Square>
+     )
+  
+  </script>
 </body>
 </html>
