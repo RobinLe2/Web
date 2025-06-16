@@ -1,5 +1,5 @@
 <!-- 주석 -->
- 
+
 <!--
   HTML(HyperText Markup Language) 문서 작성의 기본 규칙 Web view를 만드는 언어 
 
@@ -66,22 +66,22 @@
     3) 예: <div>...</div>, <p>...</p>, <span>...</span>, <a>...</a> 등
 -->
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ko">
-<head>
-  <!-- 문자 인코딩 방식을 지정합니다. -->
-  <meta charset="UTF-8">       <!-- 현재 보는 파일은 text/html; charset=UTF-8  형태의 파일임  -->
-  <!-- 문서의 설명, 키워드, 저자 정보를 지정합니다. -->
-  <meta name="description" content="이 페이지의 설명입니다.">
-  <meta name="keywords" content="HTML, meta, tag">
-  <meta name="author" content="홍길동">
-  <!-- 모바일 기기에서의 화면 크기와 확대/축소 동작을 제어합니다.  장치 너비에 따라 화면 레이아웃 달라짐 . 반응형 웹 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>basic</title>
-</head>
-<body>
-  
-  <!--
+  <head>
+    <!-- 문자 인코딩 방식을 지정합니다. -->
+    <meta charset="UTF-8" />
+    <!-- 현재 보는 파일은 text/html; charset=UTF-8  형태의 파일임  -->
+    <!-- 문서의 설명, 키워드, 저자 정보를 지정합니다. -->
+    <meta name="description" content="이 페이지의 설명입니다." />
+    <meta name="keywords" content="HTML, meta, tag" />
+    <meta name="author" content="홍길동" />
+    <!-- 모바일 기기에서의 화면 크기와 확대/축소 동작을 제어합니다.  장치 너비에 따라 화면 레이아웃 달라짐 . 반응형 웹 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>basic</title>
+  </head>
+  <body>
+    <!--
     <div> 태그
     
     1. <div> 태그는 "division(분할, 구역)"의 약자로, HTML에서 특별한 의미 없이 웹 페이지의 레이아웃을 나누거나 여러 요소를 그룹화하는 데 사용하는 대표적인 블록 요소입니다.
@@ -97,7 +97,7 @@
       5) 스타일 및 속성 부여
         class, id, style 등 다양한 속성을 부여해 CSS나 JavaScript에서 선택적으로 제어할 수 있습니다.
   -->
-  <div>Hello World!</div>
+    <div>Hello World!</div>
     <!--
     <span> 태그
 
@@ -112,8 +112,8 @@
       4) 영역의 한정
         <span> 태그는 감싼 내용(content)만큼만 영역을 차지하며, 별도의 너비나 높이(width, height) 속성은 기본적으로 적용되지 않습니다.
   -->
-  <span>Hello World!</span>
-  <!--
+    <span>Hello World!</span>
+    <!--
   id 속성과 class 속성
 
   1. id와 class는 HTML 요소에 부여하는 대표적인 전역 속성(Global Attribute)입니다.
@@ -137,18 +137,18 @@
     4) 작성 방법
       대소문자를 구분하며, 공백을 포함할 수 없습니다. 하나의 요소에 여러 class를 지정하는 경우 공백을 사용합니다.
   -->
- <div id="one" class="item">one</div>
- <div id="two" class="item">two</div>
+    <div id="one" class="item">one</div>
+    <div id="two" class="item">two</div>
 
- <style>
-  .item{
-    color:brown;
-  }
- </style>
- <script>
-    document.getElementById("one").textContent = "하나";
- </script>
-  <!--
+    <style>
+      .item {
+        color: brown;
+      }
+    </style>
+    <script>
+      document.getElementById("one").textContent = "하나";
+    </script>
+    <!--
     <br> 태그
 
     1. <br> 태그는 HTML에서 텍스트 내에 줄바꿈(line break)을 삽입할 때 사용하는 인라인 요소입니다. 이 태그를 사용하면 새 단락을 만들지 않고도 텍스트의 원하는 위치에서 줄을 바꿀 수 있습니다.
@@ -162,9 +162,9 @@
       4) 스타일 적용 제한
         줄 간격 등 스타일을 조정하려면 CSS의 line-height나 margin을 사용하는 것이 바람직합니다. <br> 태그를 여러 개 사용하거나 <br> 태그 자체에 스타일을 적용하는 것은 권장되지 않습니다.
   -->
-  <br><br><br>
-  <div>three</div>
-  <!--
+    <br /><br /><br />
+    <div>three</div>
+    <!--
     <hr> 태그
 
     1. <hr> 태그는 HTML에서 "horizontal rule"의 약자로, 웹페이지에 "수평선(가로선)"을 삽입하여 콘텐츠의 구분이나 주제의 전환을 시각적으로 나타내는 데 사용합니다.
@@ -179,8 +179,10 @@
       4) 줄바꿈 효과
         <hr> 태그를 사용하면 줄바꿈이 자동으로 적용되어 별도의 <br>이나 <p> 태그 없이도 다음 줄로 이동합니다.
   -->
-  <hr><hr><hr>
-  <!--
+    <hr />
+    <hr />
+    <hr />
+    <!--
     엔티티 코드(Entity Code) 특수 문자를 화면에 나타내고자 할 때 사용
 
     1. 엔티티 코드는 HTML 문서에서 특수 문자나 예약 문자를 안전하게 표현하기 위해 사용하는 문자 참조 방식입니다.
@@ -207,8 +209,8 @@
       ©     | &copy;      | &#169;      | 저작권 기호
       공백  | &nbsp;      | &#160;      | 줄바꿈 없는 공백
   -->
-  <div> &lt;div&gt; &nbsp; 태그 </div>
-  <!--
+    <div>&lt;div&gt; &nbsp; 태그</div>
+    <!--
     <h1>~<h6> 태그
         h4는 기본 글꼴 크기와 같다(16pixel).  h1 32px
     1. <h1>~<h6> 태그는 HTML에서 제목(heading)을 표시하는 태그로, 문서의 구조와 계층을 나타내는 데 사용됩니다.
@@ -226,15 +228,15 @@
         (3) <h2>~<h6>은 소제목이나 섹션별 제목으로 여러 번 사용할 수 있습니다.
         (4) 스타일(글씨 크기, 색상 등)은 CSS로 조정하며, 태그 자체는 의미와 구조를 위해 사용합니다.
   -->
-  <h1>h1</h1>
-  <h2>h2</h2>
-  <h3>h3</h3>
-  <h4>h4</h4>
-  <h5>h5</h5>
-  <h6>h6</h6>
-  <h7>h7</h7>
+    <h1>h1</h1>
+    <h2>h2</h2>
+    <h3>h3</h3>
+    <h4>h4</h4>
+    <h5>h5</h5>
+    <h6>h6</h6>
+    <h7>h7</h7>
 
-  <!--
+    <!--
     <p> 태그       안의 공백과 줄바꿈은 적용되지 않는다.(br코드 적용)
 
     1. <p> 태그는 HTML에서 "paragraph(문단)" 태그로, 웹 문서에서 텍스트의 단락(문단)을 구분할 때 사용합니다.
@@ -255,10 +257,13 @@
       2) 빈 <p> 태그는 스크린 리더 등 보조기기에 혼란을 줄 수 있으므로 사용하지 않습니다. 여백이 필요할 때는 CSS의 margin이나 padding을 사용하는 것이 좋습니다.
       3) 가독성을 높이기 위해서 너무 많은 텍스트를 하나의 <p> 태그에 넣지 않고 적절한 길이의 문단으로 나누는 것이 좋습니다.
   -->
-   <h1>문단제목입니다.</h1>   <!-- <p>안에 넣으면 안됨. 밖으로 빼서 코드 실행해야함.-->  
-   <p> 여기는 문단입니다.             여기는 문단입니다. <br>
-       여기는 문단입니다.             여기는 문단입니다.   </p>
-  <!--
+    <h1>문단제목입니다.</h1>
+    <!-- <p>안에 넣으면 안됨. 밖으로 빼서 코드 실행해야함.-->
+    <p>
+      여기는 문단입니다. 여기는 문단입니다. <br />
+      여기는 문단입니다. 여기는 문단입니다.
+    </p>
+    <!--  
     <pre> 태그
 
     1. <pre> 태그는 HTML에서 "preformatted text"의 약자로, 텍스트의 공백, 들여쓰기, 줄바꿈 등 작성한 서식을 그대로 유지하여 브라우저에 표시하는 블록 요소입니다.
@@ -271,14 +276,12 @@
         <pre>는 블록 레벨 요소로, 항상 새로운 줄에서 시작하고, 위아래에 기본 여백이 적용됩니다.
       4) 코드, ASCII 아트 등 활용
         프로그래밍 코드, 텍스트 예제, ASCII 아트 등 서식이 중요한 텍스트를 표현할 때 주로 사용합니다.
-  --> 
-   
+  -->
+
     <pre>
       여기는 문단입니다.               여기는 문단입니다.
       여기는 문단입니다.               여기는 문단입니다.
     </pre>
-
-</body>
-
- 
+    안녕하세
+  </body>
 </html>

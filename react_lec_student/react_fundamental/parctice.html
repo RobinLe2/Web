@@ -1,21 +1,73 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <title>JSX</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>JSX</title>
+  </head>
+  <body>
+    <div id="root4"></div>
+    <script type="text/babel">
+      const CheckboxComponent = () => {
+        const [isChecked, setIsChecked] = React.useState(false);
 
+        const handleChange = (e) => {
+          setIsChecked(e.target.checked);
+        };
+        return (
+          <>
+            <input
+              type="checkbox"
+              id="chk"
+              onChange={handleChange}
+              checked={isChecked}
+            />
+            <label htmlFor="chk">체크박스</label>
+            <h1>{isChecked ? "true" : "false"}</h1>
+          </>
+        );
+      };
 
+      ReactDOM.createRoot(document.getElementById("root4")).render(
+        <CheckboxComponent />
+      );
+    </script>
 
+    <div id="root5"></div>
+    <script type="text/babel">
+      const SelectComponent = () => {
+        const [isSelected, setIsSelected] = React.useState("");
+        const handleChange = (e) => {
+          setIsSelected(e.target.value);
+        };
 
-</body>
+        return (
+          <>
+            <select id="slt" onChange={handleChange} value={isSelected}>
+              <option value="통신사를 고르시오" hidden>
+                통신사를 고르시오
+              </option>
+              <option value="SKT">SKT</option>
+              <option value="KT">KT</option>
+              <option value="LG U+">LG U+</option>
+            </select>
+            <h1>{isSelected}</h1>
+          </>
+        );
+      };
 
-
-
-
+      ReactDOM.createRoot(document.getElementById("root5")).render(
+        <SelectComponent />
+      );
+    </script>
+  </body>
 </html>

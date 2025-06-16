@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>multimedia</title>
-</head>
-<body>
-  
-  <!--
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>multimedia</title>
+  </head>
+  <body>
+    <!--
     <img> 태그
         <img alt = "이미지 설명">   이미지가 표시되지 않을 때 설명글임
     1. <img> 태그는 HTML 문서에서 이미지를 삽입할 때 사용하는 태그입니다. 
@@ -27,8 +26,8 @@
       2) 접근성 및 권장사항
         alt 속성은 반드시 작성하는 것이 좋습니다. 이미지를 설명하는 짧은 문구를 넣어야 하며, 웹 접근성(특히 시각장애인용 스크린리더)과 검색엔진 최적화를 위해 필수적입니다.
   -->
-  
-  <!--
+
+    <!--
     이미지 경로 지정법
 
     1. 상대경로: 현재 HTML 파일 위치를 기준으로 지정합니다.
@@ -42,10 +41,11 @@
       VSCode의 Live Server와 같은 개발 환경에서는 절대 경로 또는 file 프로토콜로 이미지를 불러오는 것이 지원되지 않거나 보안상 제한됩니다.
       HTML 파일과 이미지 파일을 같은 프로젝트 폴더 내에 두고, 상대 경로를 사용하는 것이 웹 개발 표준이며, 정상적으로 이미지가 표시되는 방법입니다.
   -->
-   <img alt="일" src="D:\dev\Web\assets\images\1.png">  <!-- 이미지가 표시 안되고 설명이 표시됨-->
-   <img alt="일" src=" ../assets/images/1.png" width ="100">
-   <img alt="이" src=" ../assets/images/2.png" width ="100"><br>
-  <!--
+    <img alt="일" src="D:\dev\Web\assets\images\1.png" />
+    <!-- 이미지가 표시 안되고 설명이 표시됨-->
+    <img alt="일" src=" ../assets/images/1.png" width="100" />
+    <img alt="이" src=" ../assets/images/2.png" width="100" /><br />
+    <!--
     <audio> 태그
 
     1. <audio> 태그는 HTML5에서 도입된 태그로, 웹페이지에 오디오(음악, 효과음 등) 파일을 삽입하고 재생할 수 있게 해줍니다.
@@ -81,15 +81,15 @@
       1) <audio> 태그 내부에 여러 개의 <source> 태그를 넣어 다양한 포맷(mp3, ogg 등)을 지원할 수 있습니다. 브라우저가 지원하는 첫 번째 소스를 사용합니다.
       2) 태그 안에 텍스트를 넣으면, <audio> 태그를 지원하지 않는 브라우저에서 해당 메시지가 표시됩니다.
   -->
-    <audio src ="../assets/audio/t-rex-roar.mp3" controls="">
+    <audio src="../assets/audio/t-rex-roar.mp3" controls="">
       이 브라우저는 audio를 지원하지 않습니다.
     </audio>
-    <br>
+    <br />
     <audio controls>
-      <source src ="../assets/audio/t-rex-roar.mp3" type="audio/mp3">
-      이 브라우저는 audio를 지원하지 않습니다.
-    </audio><br>
-  <!--
+      <source src="../assets/audio/t-rex-roar.mp3" type="audio/mp3" />
+      이 브라우저는 audio를 지원하지 않습니다.</audio
+    ><br />
+    <!--
     <video> 태그
 
     1. <video> 태그는 HTML5에서 도입된 동영상 삽입 태그로, 플러그인 없이 웹페이지에서 직접 동영상을 재생할 수 있게 해줍니다.
@@ -133,8 +133,8 @@
     </video>
 
     <video controls>
-      <source src="../assets/video/flower.webm" type="video/webm">
+      <source src="../assets/video/flower.webm" type="video/webm" />
       이 브라우저는 비디오를 지원하지 않습니다.
     </video>
-</body>
+  </body>
 </html>
