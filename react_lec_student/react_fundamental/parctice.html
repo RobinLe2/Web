@@ -69,5 +69,94 @@
         <SelectComponent />
       );
     </script>
+
+    <div id="root6"></div>
+
+    <script type="text/babel">
+      const LoginComponent = () => {
+        //state 2개
+
+        const [id, setId] = React.useState("");
+        const [pw, setPw] = React.useState("");
+
+        const handleSubmit = (e) => {
+          if (id === "" || pw === "") {
+            alert("아이디와 비밀번호를 입력하시오");
+            e.preventDefault();
+            return;
+          }
+          alert(`id : ${id}, pw : ${pw}`);
+        };
+
+        return (
+          <>
+            <form action="/login" method="post" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                value={id}
+                onChange={(e) => setId(e.target.value)}
+                placeholder="아이디"
+              />
+              <br />
+              <input
+                type="password"
+                value={pw}
+                onChange={(e) => setPw(e.target.value)}
+                placeholder="비밀번호"
+              />
+              <br />
+              <button type="submit">입력</button>
+            </form>
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root6")).render(
+        <LoginComponent />
+      );
+
+      /*
+      //----- 로그인 화면과 state (state 2개 사용)
+
+      const LoginComponent = () => {
+        // state 2개
+        const [id, setId] = React.useState("");
+        const [pw, setPw] = React.useState("");
+
+        // submit 이벤트 핸들러
+        const handleSubmit = (e) => {
+          if (id === "" || pw === "") {
+            alert("아이디와 비밀번호 입력을 확인하세요.");
+            e.preventDefault(); //-- 서브밋을 막습니다.
+            return; //-------------- 이벤트 핸들러의 실행을 막습니다.
+          }
+          alert(`id: ${id}, pw: ${pw}`);
+        };
+
+        return (
+          <form action="/login" method="post" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+              placeholder="아이디"
+            />
+            <br />
+            <input
+              type="password"
+              value={pw}
+              onChange={(e) => setPw(e.target.value)}
+              placeholder="비밀번호"
+            />
+            <br />
+            <button type="submit">로그인</button>
+          </form>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root6")).render(
+        <LoginComponent />
+      );
+      */
+    </script>
   </body>
 </html>
