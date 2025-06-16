@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <title>useState</title>
-</head>
-<body>
-
-<!--
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>useState</title>
+  </head>
+  <body>
+    <!--
 1. React.useState()
   1) 함수형 컴포넌트에서 상태(state)를 선언하고 관리하기 위한 훅(Hooks) 입니다. 
     (여기서 상태란 컴포넌트가 렌더링되는 동안 값이 변할 수 있는 데이터를 의미합니다.)
@@ -37,5 +42,320 @@
   2) 함수(이전 상태 값을 받아 새로운 상태 값을 반환하는 함수)를 전달하는 방식 (함수형 업데이트)
 -->
 
-</body>
+    <div id="root1"></div>
+    <script type="text/babel">
+      const Spin1 = () => {
+        //훅
+        //state = { number:0}
+        //number 변경 함수 : setNumber
+        const [number, setNumber] = React.useState(0); // 기본적으로 함수명을 정할 때 변수값의 앞에 set을 붙임
+
+        // 증가용 이벤트 핸들러
+        const increaseHandler = (e) => {
+          // number = number + 1; // 사용할 수 없는 표현식입니다/
+          setNumber(number + 1); // 반드시 상태 업데이트 함수를 사용해야만 합니다.
+        };
+
+        // 감소용 이벤트 핸들러
+        const decreaseHandler = (e) => {
+          setNumber(number - 1);
+        };
+        return (
+          <>
+            <h1>{number}</h1>
+            <button onClick={increaseHandler}>▲</button>
+            <button onClick={decreaseHandler}>▼</button>
+          </>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root1")).render(<Spin1 />);
+
+      /* 사용할 state의 타입을 결정할 수 있음
+        React.useState(false)
+        React.useState(0)
+        React.useState('')
+        React.useState({})
+        React.useState([])
+      */
+    </script>
+
+    <hr />
+    <div id="root2"></div>
+    <script type="text/babel">
+      const Spin2 = () => {
+        const [number, setNumber] = React.useState(0);
+
+        const increaseHandler = (e) => {
+          //---- 함수형 업데이트
+          //현재 state를 전달하고, 새로운 state를 반환하는 콜백 함수를 사용하는 방식입니다.
+
+          setNumber((prevNumber) => prevNumber + 1);
+        };
+        const decreaseHandler = (e) => {
+          setNumber((prevNumber) => prevNumber - 1);
+        };
+
+        return (
+          <>
+            <h1>{number}</h1>
+            <button onClick={increaseHandler}>▲</button>
+            <button onClick={decreaseHandler}>▼</button>
+          </>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root2")).render(<Spin2 />);
+    </script>
+
+    <hr />
+    <div id="root3"></div>
+    <script type="text/babel">
+      const InputComponent = () => {
+        // state
+        const [inputValue, setInputValue] = React.useState("");
+
+        // 입력 상자에 입력한 내용이 변하면 발생하는 이벤트 : onChange
+        const handleChange = (e) => {
+          // console.log(e.target.value);
+          setInputValue(e.target.value);
+        };
+
+        return (
+          <>
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleChange}
+              placeholder="값을 입력하세요"
+            />
+            <h1>{inputValue}</h1>
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root3")).render(
+        <InputComponent />
+      );
+    </script>
+
+    <hr />
+
+    <div id="root4"></div>
+    <script type="text/babel">
+      const CheckboxComponent = () => {
+        //state
+        const [isChecked, setIsChecked] = React.useState(false);
+
+        // 체크 상태가 변할때마다 발생하는 이벤트 : onChange
+        const handleChange = (e) => {
+          //console.log(e.target.checked);
+          setIsChecked(e.target.checked);
+        };
+        return (
+          <>
+            <input
+              type="checkbox"
+              id="chk"
+              onChange={handleChange}
+              checked={isChecked}
+            />
+            <label htmlFor="chk">체크박스</label>
+            {/* boolean 값은 표현식으로 화면에 표시할 수 없습니다. 문자열로 바꿔서 표시합니다.*/}
+            <h1>{isChecked ? "true" : "false"}</h1>
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root4")).render(
+        <CheckboxComponent />
+      );
+    </script>
+
+    <hr />
+
+    <div id="root5"></div>
+    <script type="text/babel">
+      const SelectComponent = () => {
+        const [isSelected, setIsSelected] = React.useState("");
+
+        const handleChange = (e) => {
+          setIsSelected(e.target.value);
+        };
+
+        return (
+          <>
+            <select id="slt" onChange={handleChange} value={isSelected}>
+              <option hidden value="">
+                통신사를 선택하세요
+              </option>
+              <option value="SKT">SKT</option>
+              <option value="KT">KT</option>
+              <option value="lg U+">LG U+</option>
+            </select>
+            <h1>{isSelected}</h1>
+          </>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root5")).render(
+        <SelectComponent />
+      );
+    </script>
+    <hr />
+
+    <div id="root6"></div>
+    <script type="text/babel">
+      const LoginComponent = () => {
+        //state 2개
+        const [id, setId] = React.useState("");
+        const [pwd, setPwd] = React.useState("");
+
+        const handleChange = (e) => {
+          setId(e.target.value);
+        };
+
+        // submit 이벤트 핸들러
+        const handleSubmit = (e) => {
+          if (id === "" || pwd === "") {
+            alert("아이디와 비밀번호 입력을 확인하세요");
+            e.preventDefault(); //-- 서브밋을 막습니다.
+            return; //-- 이벤트 핸들러의 실행을 막습니다.
+          }
+          alert(`id : ${id}, pw: ${pwd}`);
+        };
+        return (
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+              placeholder="아이디"
+            />
+            <br />
+            <input
+              type="password"
+              value={pwd}
+              onChange={(e) => setPwd(e.target.value)}
+              placeholder="비밀번호"
+            />
+            <br />
+            <button type="submit">로그인</button>
+          </form>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root6")).render(
+        <LoginComponent />
+      );
+    </script>
+
+    <hr />
+
+    <div id="root7"></div>
+    <script type="text/babel">
+      const LoginComponent2 = () => {
+        //--- 로그인 화면과 state (state 1개)
+        const [user, setUser] = React.useState({
+          id: "",
+          pw: "",
+        });
+
+        // 입력 상자(아이디, 비밀번호)의 변경 이벤트 핸들러
+        const handleChange = (e) => {
+          setUser({
+            ...user, //--- 기존 user 객체가 가진 값을 그대로 사용합니다.
+            [e.target.id]: e.target.value, //-- 입력 상자(id 또는 pw)의 값을 덮어씁니다.
+          });
+        };
+
+        // 서브밋 이벤트 핸들러
+        const handleSubmit = (e) => {
+          if (user.id === "" || user.pw === "") {
+            alert("아이디와 비밀번호 입력을 확인하세요.");
+            e.preventDefault();
+            return;
+          }
+          alert(`id: ${user.id}, pw: ${user.pw}`);
+        };
+
+        return (
+          <form action="/login" method="post" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              id="id"
+              value={user.id}
+              onChange={handleChange}
+              placeholder="아이디"
+            />
+            <br />
+            <input
+              type="password"
+              id="pw" //--- id 값은 state user 객체의 pw 프로퍼티와 동일하게 맞춥니다.
+              value={user.pw}
+              onChange={handleChange}
+              placeholder="비밀번호"
+            />
+            <br />
+            <button type="submit">로그인</button>
+          </form>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root7")).render(
+        <LoginComponent2 />
+      );
+    </script>
+
+    <hr />
+
+    <div id="root8"></div>
+    <script type="text/babel">
+      const AnimalComponent = () => {
+        //state
+        const [inputValue, setInputValue] = React.useState("");
+        const [animals, setAnimals] = React.useState([]);
+
+        //입력 상자 입력 이벤트
+        const handleChange = (e) => {
+          setInputValue(e.target.value);
+        };
+
+        // 추가 등록 이벤트
+        const handleClick = (e) => {
+          if (inputValue.trim() === "") {
+            alert("동물 이름을 입력하세요");
+            e.preventDefault();
+          }
+          //inputValue를 animals 배열에 넣기
+          setAnimals([
+            ...animals, //---기존 animals 배열 요소 전부(spread 연산 ... 활용)
+            inputValue, //  새로 입력한 inputValue
+          ]);
+
+          // 입력 상자 초기화하기
+          setInputValue("");
+        };
+        return (
+          <>
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleChange}
+              placeholder="동물 입력"
+            />
+            <button type="button" onClick={handleClick}>
+              추가
+            </button>
+            <ul>
+              {animals.map((animal, i) => (
+                <li key={i}>{animal}</li>
+              ))}
+            </ul>
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root8")).render(
+        <AnimalComponent />
+      );
+    </script>
+  </body>
 </html>
