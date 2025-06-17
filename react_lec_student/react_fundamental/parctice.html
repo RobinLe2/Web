@@ -113,50 +113,56 @@
       ReactDOM.createRoot(document.getElementById("root6")).render(
         <LoginComponent />
       );
+    </script>
+
+
 
       /*
-      //----- 로그인 화면과 state (state 2개 사용)
+          const AnimalComponent = () => {
+        // state
+        const [inputValue, setInputValue] = React.useState("");
+        const [animals, setAnimals] = React.useState([]);
 
-      const LoginComponent = () => {
-        // state 2개
-        const [id, setId] = React.useState("");
-        const [pw, setPw] = React.useState("");
+        // 입력 상자 입력 이벤트
+        const handleChange = (e) => {
+          setInputValue(e.target.value);
+        };
 
-        // submit 이벤트 핸들러
-        const handleSubmit = (e) => {
-          if (id === "" || pw === "") {
-            alert("아이디와 비밀번호 입력을 확인하세요.");
-            e.preventDefault(); //-- 서브밋을 막습니다.
-            return; //-------------- 이벤트 핸들러의 실행을 막습니다.
+        // 추가 등록 이벤트
+        const handleClick = (e) => {
+          if (inputValue.trim() === "") {
+            alert("동물 이름을 입력하세요");
+            e.preventDefault();
           }
-          alert(`id: ${id}, pw: ${pw}`);
+          setAnimals([
+            ...animals,
+            inputValue,
+          ]);
+          setInputValue("");
         };
 
         return (
-          <form action="/login" method="post" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-              placeholder="아이디"
+          <><inputtype="text"
+              value={inputValue}
+              onChange={handleChange}
+              placeholder="동물 입력"
             />
-            <br />
-            <input
-              type="password"
-              value={pw}
-              onChange={(e) => setPw(e.target.value)}
-              placeholder="비밀번호"
-            />
-            <br />
-            <button type="submit">로그인</button>
-          </form>
+            <button type="button" onClick={handleClick}>
+              추가
+            </button>
+            <ul>
+              {animals.map((animal, i) => (
+                <li key={i}>{animal}</li>
+              ))}
+            </ul>
+          </>
         );
       };
 
-      ReactDOM.createRoot(document.getElementById("root6")).render(
-        <LoginComponent />
+      ReactDOM.createRoot(document.getElementById("root8")).render(
+        <AnimalComponent />
       );
-      */
+          */
     </script>
   </body>
 </html>
