@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const TodoAppend = ({ description, onChange, onClick }) => {
+        return (
+          <div className="todo-append">
+            <label htmlFor="description"> 할 일 세부 내용</label>
+            <input
+              type="text"
+              id="description"
+              value={description}
+              onChange={onChange}
+            />
+            <button type="button" onClick={onClick}>
+              추가
+            </button>
+          </div>
+        );
+      };
+
+      const TodoListItem = ({ todo, onCheckboxChange, onDeleteClick }) => {
+        return (
+          <div className="todo">
+            <input type="checkbox" id={todo.todoNo} onChange={onChange} />
+            <label
+              htmlFor={todo.todoNo}
+              style={{ textDecoration: todo.isDone ? "line-through" : none }}
+            >
+              {todo.description}
+            </label>
+            <button type="button" data-todo-no={todo.todoNo} onClick={onClick}>
+              X
+            </button>
+          </div>
+        );
+      };
+
+      const TodoList = () => {
+        // state
+        const [todos, setTodos] = React.useState([]); //-- 할 일 리스트
+        const [todo, setTodo] = React.useState({
+          //-- 할 일
+          todoNo: 1,
+          description: "",
+          isDone: false,
+        });
+
+        // description 입력 이벤트 핸들러
+        const onDescriptionChange = (e) => {
+          setTodo({
+            ...todo, // 기존 todo를 모두 그대로 사용합니다.
+            description: e.target.value, // description 값을 사용자가 입력한 값으로 덮어쓰기합니다.
+          });
+        };
+        // 추가 버튼 이벤트 핸들러
+        const onAddClick = (e) => {
+          if (todo.description.trim() === "") {
+            alert("할 일 세부내용을 입력하세요.");
+            return;
+          }
+          setTodos(todos.concat(todo)); //-- todos 배열에 todo를 연결한 새로운 배열을 전달합니다.
+          setTodo({
+            //-- todo 초기화
+            todoNo: todo.todoNo + 1,
+            description: "",
+            isDone: false,
+          });
+        };
+
+        //체크박스 체크 변경 이벤트 핸들러
+        const onCheckboxChange = (e) => {
+          setTodos(
+            todos.map((todo) => {
+              // 아래 div를 <TodoListItem> 컴포넌트로 분리해보세요
+              <TodoListItem
+                key={todo.todoNo}
+                todo={todo}
+                onChange={onCheckboxChange}
+                onClick={onDeleteClick}
+              />;
+
+              if (e.target.id == todo.todoNo) {
+                //--- 체크한 항목과 일치하는 todo를 찾습니다.  if(Number(e.target.id) === todo.todoNo)  e.target.id는 문자열이고 todo.todoNo은 숫자여서 ===으로 하면 동작하지 않음.
+                return { ...todo, isDone: e.target.checked }; //-- 완료 여부를 체크되어있으면 true로 아니면 false로 없데이트합니다.
+              }
+              return todo;
+            })
+          );
+        };
+        // 삭제 버튼 클릭 이벤트 핸들러
+        const onDeleteClick = (e) => {
+          setTodos(
+            todos.filter((todo) => e.target.dataset.todoNo != todo.todoNo)
+          );
+        };
+        return (
+          <>
+            <TodoAppend
+              description={todo.description}
+              onChange={onDescriptionChange}
+              onClick={onAddClick}
+            />
+            <div className="todos">
+              {todos.map((t) => (
+                <div className="todos">
+                  {todos.map((todo) => (
+                    <TodoListItem
+                      key={t.todoNo}
+                      todo={t}
+                      onCheckboxChange={onCheckboxChange}
+                      onDeleteClick={onDeleteClick}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+          </>
+        );
+      };
+
+      const TodoHeader = () => {
+        return (
+          <div className="header">
+            <h1>오늘의 TodoList ({new Date().toLocaleDateString()})</h1>
+          </div>
+        );
+      };
+
+      const TodoBody = () => {
+        return (
+          <div className="body">
+            <TodoList />
+          </div>
+        );
+      };
+
+      const TodoFooter = () => {
+        return (
+          <div className="footer">
+            <p>Copyright 2025. ALL rights reserved.</p>
+          </div>
+        );
+      };
+
+      const TodoApp = () => {
+        return (
+          <>
+            <TodoHeader />
+            <TodoBody />
+            <TodoFooter />
+          </>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<TodoApp />);
+    </script>
+
+    <div id="root2"></div>
+    <script type="text/babel">
+      //연습) 좋아요 버튼
+      //      누를때마다 버튼 텍스트가 "좋아요", "싫어요"가 반복되도록 컴포넌트를 구현하세요.
+
+      const Likebutton = () => {
+        //state
+        const [isLike, setIsLike] = React.useState(false);
+
+        //이벤트
+        const clickHandler = (e) => {
+          setIsLike(!isLike);
+        };
+
+        return (
+          <button type="button" onClick={clickHandler}>
+            {isLike ? "😊" : "😒"}
+          </button>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root2")).render(
+        <Likebutton />
+      );
+    </script>
+
+    <div id="root3"></div>
+    <script type="text/babel">
+      //연습) 배열에 값 추가하기
+      //      "1 추가" 버튼 클릭 -> 배열에 1추가 => "2추가" 버튼 클릭 => 배열에 2 추가 => ....
+      //      배열에 저장된 모든 요소를 화면에 출력하세요
+
+      const ArrayList = () => {
+        //state
+        const [number, setNumber] = React.useState(1);
+        const [numbers, setNumbers] = React.useState([]);
+
+        //이벤트
+        const handleClick = (e) => {
+          setNumber(number + 1);
+          setNumbers([...numbers, number]);
+        };
+        return (
+          <>
+            <button onClick={handleClick}>{number} 추가 </button>
+            <div>
+              {numbers.map((number, i) => (
+                <span key={i} style={{ marginRight: 10 }}>
+                  {number}
+                </span>
+              ))}
+            </div>
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root3")).render(
+        <ArrayList />
+      );
+    </script>
+
+    <div id="root4"></div>
+    <script type="text/babel">
+      //연습 ) 휴대전화번호를 입력 받는 입력상자를 반환하는 컴포넌트를 구현하세요.
+      //       휴대전화번호를 입력 할 떄 하이픈('-')을 입력하면 자동으로 지워버리세요.
+      //       String의 replace 함수를 이용해서 모든 하이픈('-')을 빈 문자열('')로 바꾸시면 됩니다.
+
+      const InputPhone = () => {
+        //state
+        const [phoneNumber, setPhoneNumber] = React.useState("");
+
+        //event
+        const handleChange = (e) => {
+          //입력값에서 모든 하이픈(-) 제거한 값을 setPhoneNumber()에게 전달
+          setPhoneNumber(e.target.value.replace("-", "").substring(0, 11));
+        };
+        return (
+          <>
+            <input
+              type="text"
+              value={phoneNumber}
+              onChange={handleChange}
+              placeholder="휴대전화번호 입력"
+            />
+            <h1>{phoneNumber}</h1>
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root4")).render(
+        <InputPhone />
+      );
+    </script>
+    <div id="root5"></div>
+    <script type="text/babel">
+      //연습) 입력상자에 입력한 값과 입력하기 이전에 입력되어 있던 값을 모두 출력하는 컴포넌트를 구현하세요/
+      //      화면에는 현재 입력한 값과 이전에 입력되어 있던 값을 모두 출력하세요.
+
+      const PrintBox = () => {
+        // state
+        const [now, setNow] = React.useState("");
+        const [prev, setPrev] = React.useState("");
+
+        //event
+        const handleChange = (e) => {
+          setNow(e.target.value);
+          setPrev(now);
+        };
+        return (
+          <>
+            <input
+              type="text"
+              value={now}
+              onChange={handleChange}
+              placeholder="입력하시오"
+            />
+            <h1>현재 값 :{now}</h1>
+            <h1>이전 값 :{prev}</h1>
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root5")).render(
+        <PrintBox />
+      );
+    </script>
+
+    <div id="root6"></div>
+    <script type="text/babel">
+      //     연습) 버튼 3개를 화면에 표시하세요  "스위치1 OFF" / "스위치2 OFF" / "스위치3 OFF"
+      //           각 스위치를 클릭할 때마다 ON/OFF 를 바꾸세요, state는 하나의 배열만 사용하세요.
+      const OnButton = () => {
+        //state
+        const [onOff, setOnOFF] = React.useState([false, false, false]);
+        //event
+        const handleClick = (e) => {};
+
+        return (
+          <>
+            {onOff.map((value, index) => (
+              <button key={index} onClick={() => handleClick(index)}>
+                스위치{index + 1} {value ? "ON" : "OFF"}
+              </button>
+            ))}
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root6")).render(
+        <OnButton />
+      );
+    </script>
+  </body>
+</html>

@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <title>useEffect</title>
-</head>
-<body>
-
-<!--
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>useEffect</title>
+  </head>
+  <body>
+    <!--
 1. React.useEffect()
   1) 함수형 컴포넌트에서 사이드 이펙트(side effect)를 처리하기 위한 훅(Hooks) 입니다.
   2) 사이드 이펙트란 데이터 가져오기, 구독 설정, DOM 직접 수정, 타이머 설정 등 컴포넌트 외부와 상호작용하거나 비동기 로직을 실행하는 작업을 의미합니다.
@@ -18,7 +23,7 @@
   
 2. React.useEffect() 구문
   1) 형식
-    React.useEffect(setup, [dependencies]);
+    React.useEffect(setup [,dependencies]);
   2) 설명
     (1) setup
       - 사이드 이펙트가 동작할 코드가 작성된 함수입니다.
@@ -56,5 +61,183 @@
     }, []);
 -->
 
-</body>
+    <div id="root1"></div>
+    <script type="text/babel">
+      const Now = () => {
+        const [now, setNow] = React.useState(new Date().toLocaleTimeString());
+        React.useEffect(() => {
+          alert("useEffect 동작");
+        }); //----- 의존 배열이 없으면 모든 렌더링에서 useEffect에 등록된 함수가 동작합니다.
+        const handleClick = (e) => {
+          setNow(new Date().toLocaleTimeString());
+        };
+        return (
+          <>
+            <button onClick={handleClick}>Now</button>
+            <h1>{now}</h1>
+          </>
+        );
+      };
+
+      const Now2 = () => {
+        const [now, setNow] = React.useState(new Date().toLocaleTimeString());
+        React.useEffect(() => {
+          alert("useEffect 동작");
+        }, []); //----- 의존 배열이 빈배열이면 최초 렌더링시에만 useEffect에 등록된 함수가 동작합니다 .
+        const handleClick = (e) => {
+          setNow(new Date().toLocaleTimeString());
+        };
+        return (
+          <>
+            <button onClick={handleClick}>Now</button>
+            <h1>{now}</h1>
+          </>
+        );
+      };
+
+      const Today = () => {
+        const [date, setDate] = React.useState({
+          year: new Date().getFullYear(),
+          month: new Date().getMonth() + 1,
+          day: new Date().getDate(),
+        });
+
+        React.useEffect(() => {
+          alert("useEffect 동작"); //-----의존 배열에 명시한 date.year, date.month 값이 변하면 useEffet에 등록한 함수가 동작합니다.
+        }, [date.year, date.month]);
+
+        // handleYear, handleMonth, handleDay 이벤트를 handleChange 이벤트로 모아보세요
+
+        const handleChange = (e) => {
+          setDate({ ...date, [e.target.id]: Number(e.target.value) });
+        };
+        /*
+        const handleYear = (e) => {
+          setDate({
+            ...date,
+            year: Number(e.target.value),
+          });
+        };
+        const handleMonth = (e) => {
+          setDate({ ...date, month: Number(e.target.value) });
+        };
+
+        const handleDay = (e) => {
+          setDate({ ...date, day: Number(e.target.value) });
+        };
+        */
+
+        return (
+          <>
+            <input
+              type="text"
+              id="year"
+              placeholder="년"
+              value={date.year}
+              onChange={handleChange}
+            />
+            <br />
+            <input
+              type="text"
+              id="month"
+              placeholder="월"
+              value={date.month}
+              onChange={handleChange}
+            />
+            <br />
+            <input
+              type="text"
+              id="day"
+              placeholder="일"
+              value={date.day}
+              onChange={handleChange}
+            />
+            <h1>{JSON.stringify(date)}</h1>
+          </>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root1")).render(<Today />);
+    </script>
+
+    <hr />
+
+    <div id="root2"></div>
+    <script type="text/babel">
+      //연습) 이름, 나이, 닉네임을 가지는 유저 state를 작성합니다
+      //     이름을 입력할 때 공백 검사를 수행해서 공백이면 경고창을 띄웁니다.
+      //     나이를 입력할 때 범위 검사를 수행해서 0미만, 120 초과이면 경고창을 띄웁니다.
+      //     닉네임은 아무검사도 수행하지 않습니다.
+      //     화면에는 입력한 이름, 나이, 닉네임을 출력합니다.
+
+      const People = () => {
+        const [person, setPerson] = React.useState({
+          name: "",
+          age: 0,
+          nickname: "",
+        });
+
+        React.useEffect(() => {
+          if (person.name.length === 0) {
+            alert("이름을 입력하세요");
+          }
+          if (person.age < 0 || person.age > 120) {
+            alert("올바른 나이를 입력하세요");
+          }
+        }, [person.name, person.age]); //-----의존 배열에 명시한 date.year, date.month 값이 변하면 useEffet에 등록한 함수가 동작합니다.
+        const handlePerson = (e) => {
+          setPerson({ ...person, [e.target.id]: e.target.value });
+        };
+        /*
+          const handleName = (e) => {
+            setPerson({
+              name: e.target.value,
+            });
+          };
+          const handleAge = (e) => {
+            setPerson({
+              age: e.target.value,
+            });
+          };
+
+          const handleNickname = (e) => {
+            setPerson({
+              nickname: e.target.value,
+            });
+          };
+        };
+        */
+        return (
+          <>
+            <input
+              type="text"
+              id="name"
+              placeholder="이름"
+              value={person.name}
+              onChange={handlePerson}
+            />
+            <br />
+            <input
+              type="text"
+              id="age"
+              placeholder="나이"
+              value={person.age}
+              onChange={handlePerson}
+            />
+            <br />
+            <input
+              type="text"
+              id="nickname"
+              placeholder="닉네임"
+              value={person.nickname}
+              onChange={handlePerson}
+            />
+            <h1>{JSON.stringify(person)}</h1>
+          </>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root2")).render(<People />);
+    </script>
+  </body>
 </html>
