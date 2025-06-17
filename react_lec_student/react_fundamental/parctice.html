@@ -15,154 +15,103 @@
     <title>JSX</title>
   </head>
   <body>
-    <div id="root4"></div>
-    <script type="text/babel">
-      const CheckboxComponent = () => {
-        const [isChecked, setIsChecked] = React.useState(false);
+    <!DOCTYPE html>
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+          crossorigin
+          src="https://unpkg.com/react@18/umd/react.development.js"
+        ></script>
+        <script
+          crossorigin
+          src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        ></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <title>useState</title>
+      </head>
+      <body>
+        <div id="root1"></div>
+        <script type="text/babel">
+          const Spin1 = () => {
+            const [number, setNumber] = React.useState(0);
+            const increaseHandler = (e) => {
+              // number = number + 1; // 사용할 수 없는 표현식입니다/
+              setNumber(number + 1); // 반드시 상태 업데이트 함수를 사용해야만 합니다.
+            };
+            return (
+              <>
+                <h1>{number}</h1>
+                <button type="button" onClick={increaseHandler}>
+                  증가
+                </button>
+              </>
+            );
+          };
+          ReactDOM.createRoot(document.getElementById("root1")).render(
+            <Spin1 />
+          );
+        </script>
 
-        const handleChange = (e) => {
-          setIsChecked(e.target.checked);
-        };
-        return (
-          <>
-            <input
-              type="checkbox"
-              id="chk"
-              onChange={handleChange}
-              checked={isChecked}
-            />
-            <label htmlFor="chk">체크박스</label>
-            <h1>{isChecked ? "true" : "false"}</h1>
-          </>
-        );
-      };
+        <div id="root2"></div>
+        <script type="text/babel">
+          // 입력상자에 값을 입력하면 화면에 나오게
 
-      ReactDOM.createRoot(document.getElementById("root4")).render(
-        <CheckboxComponent />
-      );
-    </script>
+          const Spin2 = () => {
+            // state
+            const [inputValue, setInputValue] = React.useState("");
 
-    <div id="root5"></div>
-    <script type="text/babel">
-      const SelectComponent = () => {
-        const [isSelected, setIsSelected] = React.useState("");
-        const handleChange = (e) => {
-          setIsSelected(e.target.value);
-        };
+            //event
+            const handleChange = (e) => {
+              setInputValue(e.target.value);
+            };
 
-        return (
-          <>
-            <select id="slt" onChange={handleChange} value={isSelected}>
-              <option value="통신사를 고르시오" hidden>
-                통신사를 고르시오
-              </option>
-              <option value="SKT">SKT</option>
-              <option value="KT">KT</option>
-              <option value="LG U+">LG U+</option>
-            </select>
-            <h1>{isSelected}</h1>
-          </>
-        );
-      };
+            return (
+              <>
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={handleChange}
+                  placeholder="값을 입력하세요"
+                />
+                <h1>{inputValue}</h1>
+              </>
+            );
+          };
+          ReactDOM.createRoot(document.getElementById("root2")).render(
+            <Spin2 />
+          );
+        </script>
 
-      ReactDOM.createRoot(document.getElementById("root5")).render(
-        <SelectComponent />
-      );
-    </script>
+        <div id="root3"></div>
+        <script type="text/babel">
+          const Spin3 = () => {
+            //state
+            const [isChecked, setIsChecked] = React.useState(false);
+            //event
+            const handleChange = (e) => {
+              setIsChecked(e.target.checked);
+            };
 
-    <div id="root6"></div>
-
-    <script type="text/babel">
-      const LoginComponent = () => {
-        //state 2개
-
-        const [id, setId] = React.useState("");
-        const [pw, setPw] = React.useState("");
-
-        const handleSubmit = (e) => {
-          if (id === "" || pw === "") {
-            alert("아이디와 비밀번호를 입력하시오");
-            e.preventDefault();
-            return;
-          }
-          alert(`id : ${id}, pw : ${pw}`);
-        };
-
-        return (
-          <>
-            <form action="/login" method="post" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-                placeholder="아이디"
-              />
-              <br />
-              <input
-                type="password"
-                value={pw}
-                onChange={(e) => setPw(e.target.value)}
-                placeholder="비밀번호"
-              />
-              <br />
-              <button type="submit">입력</button>
-            </form>
-          </>
-        );
-      };
-      ReactDOM.createRoot(document.getElementById("root6")).render(
-        <LoginComponent />
-      );
-    </script>
-
-
-
-      /*
-          const AnimalComponent = () => {
-        // state
-        const [inputValue, setInputValue] = React.useState("");
-        const [animals, setAnimals] = React.useState([]);
-
-        // 입력 상자 입력 이벤트
-        const handleChange = (e) => {
-          setInputValue(e.target.value);
-        };
-
-        // 추가 등록 이벤트
-        const handleClick = (e) => {
-          if (inputValue.trim() === "") {
-            alert("동물 이름을 입력하세요");
-            e.preventDefault();
-          }
-          setAnimals([
-            ...animals,
-            inputValue,
-          ]);
-          setInputValue("");
-        };
-
-        return (
-          <><inputtype="text"
-              value={inputValue}
-              onChange={handleChange}
-              placeholder="동물 입력"
-            />
-            <button type="button" onClick={handleClick}>
-              추가
-            </button>
-            <ul>
-              {animals.map((animal, i) => (
-                <li key={i}>{animal}</li>
-              ))}
-            </ul>
-          </>
-        );
-      };
-
-      ReactDOM.createRoot(document.getElementById("root8")).render(
-        <AnimalComponent />
-      );
-          */
-    </script>
+            return (
+              <>
+                <input
+                  type="checkbox"
+                  id="chk"
+                  checked={isChecked}
+                  onChange={handleChange}
+                />
+                <label htmlFor="chk">체크박스</label>
+                <h1>{isChecked ? "true" : "false"}</h1>
+              </>
+            );
+          };
+          ReactDOM.createRoot(document.getElementById("root3")).render(
+            <Spin3 />
+          );
+        </script>
+      </body>
+    </html>
   </body>
 </html>
