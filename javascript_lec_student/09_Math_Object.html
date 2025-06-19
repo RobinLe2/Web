@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Math</title>
-</head>
-<body>
-
-<!--
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math</title>
+  </head>
+  <body>
+    <!--
 Math 내장 객체
 
 1. Math.abs(x)
@@ -46,50 +45,49 @@ Math 내장 객체
   1) 0.0 이상 1.0 미만의 부동 소수점 의사 난수 반환
   2) 암호학적으로 안전한 난수를 제공하지 않으므로 보안과 관련된 용도로 사용 금지(대신 window.crypto.getRandomValues() 메소드 권장)
 -->
-<script>
-  // 난수 조정하기
-  // Math.random()                     0.0 <= 난수 < 1.0
-  // Math.random() * 5                 0.0 <= 난수 < 5.0
-  // Math.floor(Math.random() * 5)       0 <= 난수 < 5
-  // Math.floor(Math.random() * 5 + 1)   1 <= 난수 < 6
+    <script>
+      // 난수 조정하기
+      // Math.random()                     0.0 <= 난수 < 1.0
+      // Math.random() * 5                 0.0 <= 난수 < 5.0
+      // Math.floor(Math.random() * 5)       0 <= 난수 < 5
+      // Math.floor(Math.random() * 5 + 1)   1 <= 난수 < 6
 
-    console.log( '로또볼' , Math.floor(Math.random() * 45 + 1));
+      console.log("로또볼", Math.floor(Math.random() * 45 + 1));
 
-  //연습) 전달된 두 값 사이의 난수를 반환하는 함수를 구현합니다.
-  //      1과 10 전달 시 1~ 9 사이 난수를 발생합니다.
-  
-  function getRandom(min, max) {
-    return Math.floor(Math.random()*(max-min) + min);
-  }
-  console.log(getRandom(1,10));
+      //연습) 전달된 두 값 사이의 난수를 반환하는 함수를 구현합니다.
+      //      1과 10 전달 시 1~ 9 사이 난수를 발생합니다.
 
+      function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+      }
+      console.log(getRandom(1, 10));
 
-  // 연습) 원하는 자릿수로 올림 처리한 결과를 반환하는 함수를 구현하세요
-  // getCeil(123.45, 1) :123.5
-  // getCeil(123.45. 0) :124
-  // getCeil(123.45)    :124
-  // getCeil(123.45, -1) :130
-  // getCeil(123.45. -2) :200
+      // 연습) 원하는 자릿수로 올림 처리한 결과를 반환하는 함수를 구현하세요
+      // getCeil(123.45, 1) :123.5
+      // getCeil(123.45. 0) :124
+      // getCeil(123.45)    :124
+      // getCeil(123.45, -1) :130
+      // getCeil(123.45. -2) :200
 
-  //getCeil(123.45, 1)      =>123.5
-  // 1) 123.45 * 10         => 1234.5
-  // 2) Math.ceil(1234.5)   => 1235
-  // 3) 1235 / 10           => 123.5
+      //getCeil(123.45, 1)      =>123.5
+      // 1) 123.45 * 10         => 1234.5
+      // 2) Math.ceil(1234.5)   => 1235
+      // 3) 1235 / 10           => 123.5
 
-  //getCeil(123.45, -2)      =>123.5
-  // 1) 123.45 / 100         => 1.2345
-  // 2) Math.ceil(1.2345)   => 2
-  // 3) 2 / 100           => 200
-  
-  
-  const getCeil = (number, digit = 0) => Math.ceil(number * Math.pow(10, digit)) / Math.pow(10,digit) ; //digit으로 값이 안오면 0이다다
-  const value = 123.456;
-  console.log(getCeil(value, 2));
-  console.log(getCeil(value, 1));
-  console.log(getCeil(value, 0));
-  console.log(getCeil(value));
-  console.log(getCeil(value, -1));
-  console.log(getCeil(value, -2));
-</script>
-</body>
+      //getCeil(123.45, -2)      =>123.5
+      // 1) 123.45 / 100         => 1.2345
+      // 2) Math.ceil(1.2345)   => 2
+      // 3) 2 / 100           => 200
+
+      const getCeil = (number, digit = 0) =>
+        Math.ceil(number * Math.pow(10, digit)) / Math.pow(10, digit); //digit으로 값이 안오면 0이다다
+      const value = 123.456;
+      console.log(getCeil(value, 2));
+      console.log(getCeil(value, 1));
+      console.log(getCeil(value, 0));
+      console.log(getCeil(value));
+      console.log(getCeil(value, -1));
+      console.log(getCeil(value, -2));
+    </script>
+  </body>
 </html>
